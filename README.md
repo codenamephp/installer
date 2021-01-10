@@ -69,9 +69,7 @@ return call_user_func(static function() {
           $variables 
       ),
       new CreateFolders($variableReplacer, $filesystem, [__DIR__ . '/../src', __DIR__ . '/../test'], $variables),
-      new DeleteFilesAndFolders($filesystem, [
-        __DIR__      
-      ]),
+      new DeleteFilesAndFolders($variableReplacer, $filesystem, [__DIR__], $variables),
     )
   ))->run();
 });

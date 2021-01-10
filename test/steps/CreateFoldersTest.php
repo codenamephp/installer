@@ -50,10 +50,7 @@ class CreateFoldersTest extends TestCase {
         ->willReturnOnConsecutiveCalls('replaced1', 'replaced2', 'replaced3');
 
     $this->sut->filesystem = $this->createMock(Filesystem::class);
-    $this->sut->filesystem
-        ->expects(self::exactly(3))
-        ->method('mkdir')
-        ->withConsecutive(['replaced1'], ['replaced2'], ['replaced3']);
+    $this->sut->filesystem->expects(self::once())->method('mkdir')->with(['replaced1', 'replaced2', 'replaced3']);
 
     $this->sut->run();
   }

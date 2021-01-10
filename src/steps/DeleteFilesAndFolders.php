@@ -18,6 +18,7 @@
 
 namespace de\codenamephp\installer\steps;
 
+use de\codenamephp\installer\templateCopy\variableReplacer\iVariableReplacer;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -27,10 +28,12 @@ use Symfony\Component\Filesystem\Filesystem;
 final class DeleteFilesAndFolders implements iStep {
 
   /**
-   * @param Filesystem $filesystem
-   * @param string[] $filesAndFoldersToDelete
+   * @param iVariableReplacer $variableReplacer Used to replace variables in the paths of the files and folders
+   * @param Filesystem $filesystem Used to delete the files and folders
+   * @param array<string> $filesAndFoldersToDelete The absolute paths of the files and folders to be deleted
+   * @param array<string, string> $variables Used in variable replacement in the folder paths of the files and folders
    */
-  public function __construct(public Filesystem $filesystem, public array $filesAndFoldersToDelete) { }
+  public function __construct(public iVariableReplacer $variableReplacer, public Filesystem $filesystem, public array $filesAndFoldersToDelete, public array $variables) { }
 
   /**
    *
@@ -38,6 +41,6 @@ final class DeleteFilesAndFolders implements iStep {
    * @throws IOException
    */
   public function run() : void {
-    $this->filesystem->remove($this->filesAndFoldersToDelete);
+    $this->filesystem->remove(array_map(fn(string $path) => $this->variableReplacer->replace($path, $this->variables), $this->filesAndFoldersToDelete));
   }
 }

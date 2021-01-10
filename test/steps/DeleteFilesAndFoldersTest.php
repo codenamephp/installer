@@ -19,6 +19,7 @@
 namespace de\codenamephp\installer\test\steps;
 
 use de\codenamephp\installer\steps\DeleteFilesAndFolders;
+use de\codenamephp\installer\templateCopy\variableReplacer\iVariableReplacer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -27,17 +28,30 @@ class DeleteFilesAndFoldersTest extends TestCase {
   private DeleteFilesAndFolders $sut;
 
   protected function setUp() : void {
+    $variableReplacer = $this->createMock(iVariableReplacer::class);
     $filesystem = $this->createMock(Filesystem::class);
 
-    $this->sut = new DeleteFilesAndFolders($filesystem, []);
+    $this->sut = new DeleteFilesAndFolders($variableReplacer, $filesystem, [], []);
   }
 
   public function testRun() : void {
     $this->sut->filesAndFoldersToDelete = ['some', 'files'];
+    $this->sut->variables = ['some', 'vars'];
+    $this->sut->filesAndFoldersToDelete = ['folder1', 'file1', 'file2'];
 
-    $filesystem = $this->createMock(Filesystem::class);
-    $filesystem->expects(self::once())->method('remove')->with($this->sut->filesAndFoldersToDelete);
-    $this->sut->filesystem = $filesystem;
+    $this->sut->variableReplacer = $this->createMock(iVariableReplacer::class);
+    $this->sut->variableReplacer
+        ->expects(self::exactly(3))
+        ->method('replace')
+        ->withConsecutive(
+            [$this->sut->filesAndFoldersToDelete[0], $this->sut->variables],
+            [$this->sut->filesAndFoldersToDelete[1], $this->sut->variables],
+            [$this->sut->filesAndFoldersToDelete[2], $this->sut->variables],
+        )
+        ->willReturnOnConsecutiveCalls('replaced1', 'replaced2', 'replaced3');
+
+    $this->sut->filesystem = $this->createMock(Filesystem::class);
+    $this->sut->filesystem->expects(self::once())->method('remove')->with(['replaced1', 'replaced2', 'replaced3']);
 
     $this->sut->run();
   }

@@ -43,8 +43,6 @@ final class CreateFolders implements iStep {
    * @throws IOException
    */
   public function run() : void {
-    foreach($this->folders as $folder) {
-      $this->filesystem->mkdir($this->variableReplacer->replace($folder, $this->variables));
-    }
+    $this->filesystem->mkdir(array_map(fn(string $folder) => $this->variableReplacer->replace($folder, $this->variables), $this->folders));
   }
 }
