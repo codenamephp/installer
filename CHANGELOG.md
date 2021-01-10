@@ -1,8 +1,8 @@
 # Changelog
 
-## [0.1.0](https://github.com/codenamephp/installer/tree/0.1.0) (2021-01-10)
+## [1.0.0](https://github.com/codenamephp/installer/tree/1.0.0) (2021-01-10)
 
-[Full Changelog](https://github.com/codenamephp/installer/compare/c8abe89026ce04dfb09a7707a6ed5e48816a33f9...0.1.0)
+[Full Changelog](https://github.com/codenamephp/installer/compare/c8abe89026ce04dfb09a7707a6ed5e48816a33f9...1.0.0)
 
 **Implemented enhancements:**
 
