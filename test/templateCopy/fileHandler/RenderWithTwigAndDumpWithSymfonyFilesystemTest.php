@@ -18,22 +18,22 @@
 
 namespace de\codenamephp\installer\test\templateCopy\fileHandler;
 
-use de\codenamephp\installer\templateCopy\fileHandler\RenderWithTwigAndSumpWithSymfonyFilesystem;
+use de\codenamephp\installer\templateCopy\fileHandler\RenderWithTwigAndDumpWithSymfonyFilesystem;
 use de\codenamephp\installer\templateCopy\variableReplacer\iVariableReplacer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Twig\Environment;
 
-class RenderWithTwigAndSumpWithSymfonyFilesystemTest extends TestCase {
+class RenderWithTwigAndDumpWithSymfonyFilesystemTest extends TestCase {
 
-  private RenderWithTwigAndSumpWithSymfonyFilesystem $sut;
+  private RenderWithTwigAndDumpWithSymfonyFilesystem $sut;
 
   protected function setUp() : void {
     $filesystem = $this->createMock(Filesystem::class);
     $variableReplacer = $this->createMock(iVariableReplacer::class);
     $twig = $this->createMock(Environment::class);
 
-    $this->sut = new RenderWithTwigAndSumpWithSymfonyFilesystem($filesystem, $variableReplacer, $twig);
+    $this->sut = new RenderWithTwigAndDumpWithSymfonyFilesystem($filesystem, $variableReplacer, $twig);
   }
 
   public function testHandle() : void {

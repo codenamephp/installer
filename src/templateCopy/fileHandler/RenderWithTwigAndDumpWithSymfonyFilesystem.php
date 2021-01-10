@@ -30,7 +30,7 @@ use Twig\Error\SyntaxError;
  * Uses twig to replace the placeholders in the file, symfony filesystem to save the twig output into the file and a variable replace to replace all variables
  * in the path
  */
-final class RenderWithTwigAndSumpWithSymfonyFilesystem implements iFileHandler {
+final class RenderWithTwigAndDumpWithSymfonyFilesystem implements iFileHandler {
 
   public function __construct(public Filesystem $filesystem, public iVariableReplacer $variableReplacer, public Environment $twig) { }
 
