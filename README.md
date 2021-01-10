@@ -34,7 +34,7 @@ so you can change the final structure on the fly (e.g. have a folder structure t
 `.installer/install.php`:
 
 ```php
-use de\codenamephp\installer\StepExecutor;/** @noinspection PhpIncludeInspection */
+use de\codenamephp\installer\StepExecutor;
 use de\codenamephp\installer\steps\CopyTemplateFolder;
 use de\codenamephp\installer\steps\DeleteFilesAndFolders;
 use de\codenamephp\installer\steps\SequentialCollection;
