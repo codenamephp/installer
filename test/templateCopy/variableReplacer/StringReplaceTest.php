@@ -16,19 +16,23 @@
  *
  */
 
-namespace de\codenamephp\installer\templateCopy\variableReplacer;
+namespace de\codenamephp\installer\test\templateCopy\variableReplacer;
 
-/**
- * Interface to replace variables in the given path
- */
-interface iVariableReplacer {
+use de\codenamephp\installer\templateCopy\variableReplacer\StringReplace;
+use PHPUnit\Framework\TestCase;
 
-  /**
-   * Implementations MUST make sure that all variables are replaced and return the final path
-   *
-   * @param string $path The path containing the placeholders
-   * @param string[] $variables The variables to use to replace the placeholders
-   * @return string The path with the placeholders replaced
-   */
-  public function replace(string $path, array $variables) : string;
+class StringReplaceTest extends TestCase {
+
+  private StringReplace $sut;
+
+  protected function setUp() : void {
+    $this->sut = new StringReplace();
+  }
+
+  public function testReplace() : void {
+    self::assertEquals('/some/path/without/placeholders/path', $this->sut->replace(
+        '/some/__placeholder1__/without/__placeholder2__/__placeholder1__',
+        ['__placeholder1__' => 'path', '__placeholder2__' => 'placeholders'])
+    );
+  }
 }

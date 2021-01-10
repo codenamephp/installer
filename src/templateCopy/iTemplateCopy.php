@@ -30,7 +30,7 @@ interface iTemplateCopy {
    *
    * @param string $source The absolute path to the source file or folder
    * @param string $target The absolute path to the target file or folder
-   * @param array $variables An array of variables that will be used for replacing placeholders
+   * @param string[] $variables An array of variables that will be used for replacing placeholders
    */
   public function copy(string $source, string $target, array $variables) : void;
 }

@@ -27,7 +27,7 @@ interface iDirectoryHandler {
    * correctly
    *
    * @param string $target The target path of the folder, e.g. the folder where the templates are installed to
-   * @param array $variables The variables to use to replace any variables in the path
+   * @param string[] $variables The variables to use to replace any variables in the path
    */
   public function handle(string $target, array $variables) : void;
 }

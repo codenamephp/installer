@@ -19,16 +19,16 @@
 namespace de\codenamephp\installer\templateCopy\variableReplacer;
 
 /**
- * Interface to replace variables in the given path
+ * Uses str_replace to replace all placeholders in the path with the variables array the name matching must be 1:1
  */
-interface iVariableReplacer {
-
+final class StringReplace implements iVariableReplacer {
   /**
-   * Implementations MUST make sure that all variables are replaced and return the final path
+   * Passes the array kes of the variables which are the names of the placeholders as search, the values as replace and the path as subject and returns
+   * the result.
    *
-   * @param string $path The path containing the placeholders
-   * @param string[] $variables The variables to use to replace the placeholders
-   * @return string The path with the placeholders replaced
+   * @inheritDoc
    */
-  public function replace(string $path, array $variables) : string;
+  public function replace(string $path, array $variables) : string {
+    return str_replace(array_keys($variables), $variables, $path);
+  }
 }
