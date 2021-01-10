@@ -50,6 +50,7 @@ return call_user_func(static function() {
   
   $filesystem = new Filesystem();
   $variableReplacer = new FramedStringReplace();
+  $componentName = basename(shell_exec("git config --get remote.origin.url"), '.git');
   
   (new StepExecutor(
     new SequentialCollection(
@@ -62,8 +63,8 @@ return call_user_func(static function() {
           __DIR__ . '/..',
           [
             'vendor' => 'codenamephp',
-            'componentName' => basename(__DIR__ . '/..'),
-            'namespace' => implode('\\', array_merge(['de', 'codenamephp'], explode('.', basename(__DIR__ . '/..'))))
+            'componentName' => $componentName,
+            'namespace' => implode('\\', array_merge(['de', 'codenamephp'], explode('.', $componentName)))
           ] 
       ),
       new DeleteFilesAndFolders($filesystem, [
