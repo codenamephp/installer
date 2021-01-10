@@ -50,7 +50,7 @@ return call_user_func(static function() {
   
   $filesystem = new Filesystem();
   $variableReplacer = new FramedStringReplace();
-  $componentName = basename(shell_exec("git config --get remote.origin.url"), '.git');
+  $componentName = basename(trim(shell_exec("git config --get remote.origin.url")), '.git');
   $variables = [
             'vendor' => 'codenamephp',
             'componentName' => $componentName,
@@ -60,16 +60,18 @@ return call_user_func(static function() {
   (new StepExecutor(
     new SequentialCollection(
       new CopyTemplateFolder(
-          new \de\codenamephp\installer\templateCopy\RecursiveIterator(
-              new CreateDirectoryWithSymfonyFilesystem($filesystem,$variableReplacer),
-              new RenderWithTwigAndDumpWithSymfonyFilesystem($filesystem, $variableReplacer, new Environment(new FilesystemLoader('/', '/')))
-          ),
-          __DIR__ . '/templates',
-          __DIR__ . '/..',
-          $variables 
+        new \de\codenamephp\installer\templateCopy\RecursiveIterator(
+          new CreateDirectoryWithSymfonyFilesystem($filesystem,$variableReplacer),
+          new RenderWithTwigAndDumpWithSymfonyFilesystem($filesystem, $variableReplacer, new Environment(new FilesystemLoader('/', '/')))
+        ),
+        __DIR__ . '/templates',
+        dirname(__DIR__),
+        $variables
       ),
-      new CreateFolders($variableReplacer, $filesystem, [__DIR__ . '/../src', __DIR__ . '/../test'], $variables),
-      new DeleteFilesAndFolders($variableReplacer, $filesystem, [__DIR__], $variables),
+      new DeleteFilesAndFolders($variableReplacer, $filesystem, [
+        dirname(__DIR__) . '/src/.gitkeep',
+        __DIR__
+      ], $variables),
     )
   ))->run();
 });
