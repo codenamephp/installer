@@ -36,7 +36,7 @@ so you can change the final structure on the fly (e.g. have a folder structure t
 ```php
 use de\codenamephp\installer\StepExecutor;
 use de\codenamephp\installer\steps\CopyTemplateFolder;
-use de\codenamephp\installer\steps\DeleteFilesAndFolders;
+use de\codenamephp\installer\steps\CreateFolders;use de\codenamephp\installer\steps\DeleteFilesAndFolders;
 use de\codenamephp\installer\steps\SequentialCollection;
 use de\codenamephp\installer\templateCopy\directoryHandler\CreateDirectoryWithSymfonyFilesystem;
 use de\codenamephp\installer\templateCopy\fileHandler\RenderWithTwigAndDumpWithSymfonyFilesystem;
@@ -51,7 +51,12 @@ return call_user_func(static function() {
   $filesystem = new Filesystem();
   $variableReplacer = new FramedStringReplace();
   $componentName = basename(shell_exec("git config --get remote.origin.url"), '.git');
-  
+  $variables = [
+            'vendor' => 'codenamephp',
+            'componentName' => $componentName,
+            'namespace' => implode('\\', array_merge(['de', 'codenamephp'], explode('.', $componentName)))
+          ];
+          
   (new StepExecutor(
     new SequentialCollection(
       new CopyTemplateFolder(
@@ -61,12 +66,9 @@ return call_user_func(static function() {
           ),
           __DIR__ . '/templates',
           __DIR__ . '/..',
-          [
-            'vendor' => 'codenamephp',
-            'componentName' => $componentName,
-            'namespace' => implode('\\', array_merge(['de', 'codenamephp'], explode('.', $componentName)))
-          ] 
+          $variables 
       ),
+      new CreateFolders($variableReplacer, $filesystem, [__DIR__ . '/../src', __DIR__ . '/../test'], $variables),
       new DeleteFilesAndFolders($filesystem, [
         __DIR__      
       ]),
