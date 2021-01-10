@@ -29,7 +29,7 @@ final class CopyTemplateFolder implements iStep {
    * @param iTemplateCopy $templateCopy Actually copies the files while treating them as templates
    * @param string $templateFolder The base folders where the templates are located
    * @param string $targetFolder The target folder where the template structure will be recreated
-   * @param string[] $variables The variables used to replace the placeholders in paths and templates
+   * @param array<string, string> $variables The variables used to replace the placeholders in paths and templates
    */
   public function __construct(public iTemplateCopy $templateCopy, public string $templateFolder, public string $targetFolder, public array $variables) { }
 

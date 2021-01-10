@@ -19,16 +19,19 @@
 namespace de\codenamephp\installer\templateCopy\variableReplacer;
 
 /**
- * Interface to replace variables in the given path
+ * Frames the variable names with a pre- and suffix so common folder names like "vendor" are not replaced by accident
  */
-interface iVariableReplacer {
+final class FramedStringReplace implements iVariableReplacer {
+
+  public function __construct(public string $prefix = '__', public string $suffix = '__') { }
 
   /**
-   * Implementations MUST make sure that all variables are replaced and return the final path
+   * Applies the prefix and suffix to all variable names (the array keys) and passes them as search to str_replace, the values as replacment and the path
+   * as subject.
    *
-   * @param string $path The path containing the placeholders
-   * @param array<string, string> $variables The variables to use to replace the placeholders
-   * @return string The path with the placeholders replaced
+   * @inheritDoc
    */
-  public function replace(string $path, array $variables) : string;
+  public function replace(string $path, array $variables) : string {
+    return str_replace(array_map(fn($name) => $this->prefix . $name . $this->suffix, array_keys($variables)), $variables, $path);
+  }
 }

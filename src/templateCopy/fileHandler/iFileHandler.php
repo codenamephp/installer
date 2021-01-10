@@ -28,7 +28,7 @@ interface iFileHandler {
    *
    * @param string $source The source path of the template being copied
    * @param string $target The target path to where the template should be rendered to
-   * @param string[] $variables The variables that should be used to replace placeholders in the paths and the file
+   * @param array<string, string> $variables The variables that should be used to replace placeholders in the paths and the file
    */
   public function handle(string $source, string $target, array $variables) : void;
 }
