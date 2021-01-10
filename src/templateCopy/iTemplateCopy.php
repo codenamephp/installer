@@ -16,21 +16,21 @@
  *
  */
 
-namespace de\codenamephp\installer;
-
-use de\codenamephp\installer\steps\iStep;
+namespace de\codenamephp\installer\templateCopy;
 
 /**
- * Installer that executes a step. This step is most likely a step collection so multiple steps will be executed in order to accomplish a complete install
+ * Interface to copy files and/or folders while replacing varibles e.g. by using a template engines
+ *
+ * Implementations MUST support variables in files and paths
  */
-final class StepExecutor implements iInstaller {
-
-  public function __construct(public iStep $step) { }
+interface iTemplateCopy {
 
   /**
-   * Just runs the step
+   * Copies the source to the target while replacing any placeholders in the file (if it is a file) or in the path
+   *
+   * @param string $source The absolute path to the source file or folder
+   * @param string $target The absolute path to the target file or folder
+   * @param array $variables An array of variables that will be used for replacing placeholders
    */
-  public function run() : void {
-    $this->step->run();
-  }
+  public function copy(string $source, string $target, array $variables) : void;
 }

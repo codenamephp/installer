@@ -16,28 +16,19 @@
  *
  */
 
-namespace de\codenamephp\installer\test;
+namespace de\codenamephp\installer\templateCopy\variableReplacer;
 
-use de\codenamephp\installer\StepExecutor;
-use de\codenamephp\installer\steps\iStep;
-use PHPUnit\Framework\TestCase;
+/**
+ * Interface to replace variables in the given path
+ */
+interface iVariableReplacer {
 
-class StepExecutorTest extends TestCase {
-
-  private StepExecutor $sut;
-
-  protected function setUp() : void {
-    $step = $this->createMock(iStep::class);
-
-    $this->sut = new StepExecutor($step);
-  }
-
-  public function testRun() : void {
-    $step = $this->createMock(iStep::class);
-    $step->expects(self::once())->method('run');
-
-    $this->sut->step = $step;
-
-    $this->sut->run();
-  }
+  /**
+   * Implementations MUST make sure that all variables are replaced and return the final path
+   *
+   * @param string $path The path containing the placeholders
+   * @param array $variables The variables to use to replace the placeholders
+   * @return string The path with the placeholders replaced
+   */
+  public function replace(string $path, array $variables) : string;
 }

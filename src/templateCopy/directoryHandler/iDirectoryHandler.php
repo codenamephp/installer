@@ -16,28 +16,18 @@
  *
  */
 
-namespace de\codenamephp\installer\test;
+namespace de\codenamephp\installer\templateCopy\directoryHandler;
 
-use de\codenamephp\installer\StepExecutor;
-use de\codenamephp\installer\steps\iStep;
-use PHPUnit\Framework\TestCase;
-
-class StepExecutorTest extends TestCase {
-
-  private StepExecutor $sut;
-
-  protected function setUp() : void {
-    $step = $this->createMock(iStep::class);
-
-    $this->sut = new StepExecutor($step);
-  }
-
-  public function testRun() : void {
-    $step = $this->createMock(iStep::class);
-    $step->expects(self::once())->method('run');
-
-    $this->sut->step = $step;
-
-    $this->sut->run();
-  }
+/**
+ * Handles directories, e.g. create them if they not exist, to normalizations on paths, ...
+ */
+interface iDirectoryHandler {
+  /**
+   * Implementations MUST make sure that all placeholders within the paths are replaced with the values from the variables array and that the folder is created
+   * correctly
+   *
+   * @param string $target The target path of the folder, e.g. the folder where the templates are installed to
+   * @param array $variables The variables to use to replace any variables in the path
+   */
+  public function handle(string $target, array $variables) : void;
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!--
-  ~ Copyright 2020 Bastian Schwarz <bastian@codename-php.de>.
+<!--~
+  ~ Copyright 2021 Bastian Schwarz <bastian@codename-php.de>.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -17,16 +17,21 @@
   -->
 
 <psalm
-    totallyTyped="true"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-    cacheDirectory=".cache"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  totallyTyped="true"
+  xmlns="https://getpsalm.org/schema/config"
+  xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+  cacheDirectory=".cache"
 >
     <projectFiles>
-        <directory name="src" />
+        <directory name="src"/>
         <ignoreFiles>
-            <directory name="vendor" />
+            <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
+
+    <issueHandlers>
+        <MissingConstructor errorLevel="suppress"/>
+        <PropertyNotSetInConstructor errorLevel="suppress"/>
+    </issueHandlers>
 </psalm>

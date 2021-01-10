@@ -16,27 +16,30 @@
  *
  */
 
-namespace de\codenamephp\installer\test;
+namespace de\codenamephp\installer\test\steps;
 
-use de\codenamephp\installer\StepExecutor;
-use de\codenamephp\installer\steps\iStep;
+use de\codenamephp\installer\steps\CopyTemplateFolder;
+use de\codenamephp\installer\templateCopy\iTemplateCopy;
 use PHPUnit\Framework\TestCase;
 
-class StepExecutorTest extends TestCase {
+class CopyTemplateFolderTest extends TestCase {
 
-  private StepExecutor $sut;
+  private CopyTemplateFolder $sut;
 
   protected function setUp() : void {
-    $step = $this->createMock(iStep::class);
+    $templateCopy = $this->createMock(iTemplateCopy::class);
 
-    $this->sut = new StepExecutor($step);
+    $this->sut = new CopyTemplateFolder($templateCopy, '?', '?', []);
   }
 
   public function testRun() : void {
-    $step = $this->createMock(iStep::class);
-    $step->expects(self::once())->method('run');
+    $this->sut->variables = ['some', 'vars'];
+    $this->sut->targetFolder = 'some/target';
+    $this->sut->templateFolder = 'some/template';
 
-    $this->sut->step = $step;
+    $templateCopy = $this->createMock(iTemplateCopy::class);
+    $templateCopy->expects(self::once())->method('copy')->with($this->sut->templateFolder, $this->sut->targetFolder, $this->sut->variables);
+    $this->sut->templateCopy = $templateCopy;
 
     $this->sut->run();
   }
