@@ -36,7 +36,8 @@ so you can change the final structure on the fly (e.g. have a folder structure t
 ```php
 use de\codenamephp\installer\StepExecutor;
 use de\codenamephp\installer\steps\CopyTemplateFolder;
-use de\codenamephp\installer\steps\CreateFolders;use de\codenamephp\installer\steps\DeleteFilesAndFolders;
+use de\codenamephp\installer\steps\CreateFolders;
+use de\codenamephp\installer\steps\DeleteFilesAndFolders;
 use de\codenamephp\installer\steps\SequentialCollection;
 use de\codenamephp\installer\templateCopy\directoryHandler\CreateDirectoryWithSymfonyFilesystem;
 use de\codenamephp\installer\templateCopy\fileHandler\RenderWithTwigAndDumpWithSymfonyFilesystem;
@@ -68,10 +69,8 @@ return call_user_func(static function() {
         dirname(__DIR__),
         $variables
       ),
-      new DeleteFilesAndFolders($variableReplacer, $filesystem, [
-        dirname(__DIR__) . '/src/.gitkeep',
-        __DIR__
-      ], $variables),
+      new CreateFolders($variableReplacer, $filesystem, [dirname(__DIR__) . '/src'], $variables),
+      new DeleteFilesAndFolders($variableReplacer, $filesystem, [__DIR__], $variables),
     )
   ))->run();
 });
