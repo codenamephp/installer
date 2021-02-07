@@ -49,9 +49,8 @@ jobs:
           release_branch: 'release'
 
       - name: commit updated changelog
-        uses: EndBug/add-and-commit@v6.2.0
+        uses: EndBug/add-and-commit@v7
         with:
           message: "[CHANGELOG] Updated changelog"
           add: "CHANGELOG.md"
           signoff: true
-          token: ${{ secrets.GITHUB_TOKEN }}

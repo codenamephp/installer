@@ -36,7 +36,7 @@
   <component name="PhpInterpreters">
     <interpreters>
       <interpreter id="5756b797-37e7-4da2-87f0-55daf5fe5e59" name="webdevops/php-dev:8.0" home="docker://DATA" debugger_id="php.debugger.XDebug">
-        <remote_data INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DOCKER_ACCOUNT_NAME="Docker" DOCKER_IMAGE_NAME="webdevops/php-dev:8.0" DOCKER_REMOTE_PROJECT_PATH="/opt/project" />
+        <remote_data INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DOCKER_ACCOUNT_NAME="Docker" DOCKER_IMAGE_NAME="codenamephp/php.webdevops.php-dev:8.0" DOCKER_REMOTE_PROJECT_PATH="/opt/project" />
       </interpreter>
     </interpreters>
   </component>
