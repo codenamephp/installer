@@ -1,11 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/codenamephp/installer/tree/HEAD)
+## [1.0.1](https://github.com/codenamephp/installer/tree/1.0.1) (2022-11-30)
 
-[Full Changelog](https://github.com/codenamephp/installer/compare/1.0.0...HEAD)
+[Full Changelog](https://github.com/codenamephp/installer/compare/1.0.0...1.0.1)
 
 **Merged pull requests:**
 
+- Update release branch [\#17](https://github.com/codenamephp/installer/pull/17) ([bastianschwarz](https://github.com/bastianschwarz))
 - Bump actions/cache from 2 to 3 [\#14](https://github.com/codenamephp/installer/pull/14) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [1.0.0](https://github.com/codenamephp/installer/tree/1.0.0) (2021-01-10)
