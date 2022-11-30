@@ -45,8 +45,8 @@ final class RecursiveIterator implements iTemplateCopy {
     }
   }
 
-  private function replaceSourceFolderWithTargetFolder(string $source, string $target, SplFileInfo $file) : string {
-    $trimPath = static fn(string $path) : string => rtrim($path, DIRECTORY_SEPARATOR . ' ');
+  public function replaceSourceFolderWithTargetFolder(string $source, string $target, SplFileInfo $file) : string {
+    $trimPath = static fn(string $path) : string => rtrim($path, sprintf("%s ", DIRECTORY_SEPARATOR));
     return str_replace($trimPath($source), $trimPath($target), $trimPath($file->getPathname()));
   }
 }
