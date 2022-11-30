@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/codenamephp/installer/tree/HEAD)
+
+[Full Changelog](https://github.com/codenamephp/installer/compare/1.0.0...HEAD)
+
+**Merged pull requests:**
+
+- Bump actions/cache from 2 to 3 [\#14](https://github.com/codenamephp/installer/pull/14) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [1.0.0](https://github.com/codenamephp/installer/tree/1.0.0) (2021-01-10)
 
 [Full Changelog](https://github.com/codenamephp/installer/compare/c8abe89026ce04dfb09a7707a6ed5e48816a33f9...1.0.0)

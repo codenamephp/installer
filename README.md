@@ -36,7 +36,8 @@ so you can change the final structure on the fly (e.g. have a folder structure t
 ```php
 use de\codenamephp\installer\StepExecutor;
 use de\codenamephp\installer\steps\CopyTemplateFolder;
-use de\codenamephp\installer\steps\CreateFolders;use de\codenamephp\installer\steps\DeleteFilesAndFolders;
+use de\codenamephp\installer\steps\CreateFolders;
+use de\codenamephp\installer\steps\DeleteFilesAndFolders;
 use de\codenamephp\installer\steps\SequentialCollection;
 use de\codenamephp\installer\templateCopy\directoryHandler\CreateDirectoryWithSymfonyFilesystem;
 use de\codenamephp\installer\templateCopy\fileHandler\RenderWithTwigAndDumpWithSymfonyFilesystem;
@@ -50,7 +51,7 @@ return call_user_func(static function() {
   
   $filesystem = new Filesystem();
   $variableReplacer = new FramedStringReplace();
-  $componentName = basename(shell_exec("git config --get remote.origin.url"), '.git');
+  $componentName = basename(trim(shell_exec("git config --get remote.origin.url")), '.git');
   $variables = [
             'vendor' => 'codenamephp',
             'componentName' => $componentName,
@@ -60,15 +61,15 @@ return call_user_func(static function() {
   (new StepExecutor(
     new SequentialCollection(
       new CopyTemplateFolder(
-          new \de\codenamephp\installer\templateCopy\RecursiveIterator(
-              new CreateDirectoryWithSymfonyFilesystem($filesystem,$variableReplacer),
-              new RenderWithTwigAndDumpWithSymfonyFilesystem($filesystem, $variableReplacer, new Environment(new FilesystemLoader('/', '/')))
-          ),
-          __DIR__ . '/templates',
-          __DIR__ . '/..',
-          $variables 
+        new \de\codenamephp\installer\templateCopy\RecursiveIterator(
+          new CreateDirectoryWithSymfonyFilesystem($filesystem,$variableReplacer),
+          new RenderWithTwigAndDumpWithSymfonyFilesystem($filesystem, $variableReplacer, new Environment(new FilesystemLoader('/', '/')))
+        ),
+        __DIR__ . '/templates',
+        dirname(__DIR__),
+        $variables
       ),
-      new CreateFolders($variableReplacer, $filesystem, [__DIR__ . '/../src', __DIR__ . '/../test'], $variables),
+      new CreateFolders($variableReplacer, $filesystem, [dirname(__DIR__) . '/src'], $variables),
       new DeleteFilesAndFolders($variableReplacer, $filesystem, [__DIR__], $variables),
     )
   ))->run();

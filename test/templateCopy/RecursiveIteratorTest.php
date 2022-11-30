@@ -75,4 +75,10 @@ class RecursiveIteratorTest extends TestCase {
 
     $this->sut->copy(vfsStream::url('/template/'), vfsStream::url('/target'), $variables);
   }
+
+    public function testreplaceSourceFolderWithTargetFolder() : void {
+      $file = $this->createConfiguredMock(\SplFileInfo::class, ['getPathname' => '/some/source/path/ ']);
+
+      self::assertEquals('/some/target/path', $this->sut->replaceSourceFolderWithTargetFolder('/some/source/ ',  '/some/target/ ', $file));
+    }
 }
