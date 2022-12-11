@@ -20,6 +20,7 @@ RUN set -x \
 
 WORKDIR /app
 
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 ARG UID
 ARG GID
 
