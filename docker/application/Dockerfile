@@ -1,4 +1,4 @@
-FROM webdevops/php-dev:8.1
+FROM webdevops/php-dev:8.2
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
@@ -20,6 +20,7 @@ RUN set -x \
 
 WORKDIR /app
 
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 ARG UID
 ARG GID
 
