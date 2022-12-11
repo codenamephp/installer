@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.0.1](https://github.com/codenamephp/installer/tree/1.0.1) (2022-11-30)
+## [1.0.1](https://github.com/codenamephp/installer/tree/1.0.1) (2022-12-11)
 
 [Full Changelog](https://github.com/codenamephp/installer/compare/1.0.0...1.0.1)
 
 **Merged pull requests:**
 
+- Bump webdevops/php-dev from 8.1 to 8.2 in /docker/application [\#18](https://github.com/codenamephp/installer/pull/18) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Update release branch [\#17](https://github.com/codenamephp/installer/pull/17) ([bastianschwarz](https://github.com/bastianschwarz))
 - Bump actions/cache from 2 to 3 [\#14](https://github.com/codenamephp/installer/pull/14) ([dependabot[bot]](https://github.com/apps/dependabot))
 
