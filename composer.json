@@ -42,7 +42,7 @@
     "psalm": "XDEBUG_MODE=off tools/psalm --threads=10 --long-progress",
     "composer-unused": "XDEBUG_MODE=off tools/composer-unused --no-progress --no-interaction",
     "composer-require-checker": "php -r 'exit((int) !(PHP_VERSION_ID >= 80400));' && XDEBUG_MODE=off tools/composer-require-checker --no-interaction || echo 'Skipping composer-require-checker because it needs PHP8.2 or higher'",
-    "infection": "XDEBUG_MODE=coverage tools/infection --min-msi=100 --min-covered-msi=100 --threads=4 --no-progress --show-mutations",
+    "infection": "php -r 'exit((int) !(PHP_VERSION_ID >= 80100));' && XDEBUG_MODE=coverage tools/infection --min-msi=100 --min-covered-msi=100 --threads=4 --no-progress --show-mutations || echo 'Skipping infection because it needs PHP8.1 or higher'",
     "phive:update": "XDEBUG_MODE=off phive update && git add tools/* phive.xml && git commit tools/* -m 'Updated phive dependencies'",
     "ci-all": [
       "composer validate",
