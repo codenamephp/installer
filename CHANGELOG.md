@@ -1,8 +1,16 @@
 # Changelog
 
-## [1.0.1](https://github.com/codenamephp/installer/tree/1.0.1) (2024-01-06)
+## [2.0.0](https://github.com/codenamephp/installer/tree/2.0.0) (2024-01-07)
 
-[Full Changelog](https://github.com/codenamephp/installer/compare/1.0.0...1.0.1)
+[Full Changelog](https://github.com/codenamephp/installer/compare/1.1.0...2.0.0)
+
+**Merged pull requests:**
+
+- Minimal PHP Version is now 8.2 [\#20](https://github.com/codenamephp/installer/pull/20) ([bastianschwarz](https://github.com/bastianschwarz))
+
+## [1.1.0](https://github.com/codenamephp/installer/tree/1.1.0) (2024-01-06)
+
+[Full Changelog](https://github.com/codenamephp/installer/compare/1.0.0...1.1.0)
 
 **Merged pull requests:**
 
