@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/codenamephp/installer/tree/2.0.1) (2024-01-14)
+
+[Full Changelog](https://github.com/codenamephp/installer/compare/2.0.0...2.0.1)
+
+**Merged pull requests:**
+
+- Update symfony/filesystem requirement from ^6.0 to ^6.0 || ^7.0 [\#21](https://github.com/codenamephp/installer/pull/21) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [2.0.0](https://github.com/codenamephp/installer/tree/2.0.0) (2024-01-07)
 
 [Full Changelog](https://github.com/codenamephp/installer/compare/1.1.0...2.0.0)
